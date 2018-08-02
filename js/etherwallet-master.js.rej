@@ -1,0 +1,20 @@
+--- dist/js/etherwallet-master.js
++++ dist/js/etherwallet-master.js
+@@ -79524,14 +84108,14 @@ function fromByteArray (uint8) {
+   return parts.join('')
+ }
+ 
+-},{}],156:[function(require,module,exports){
+-/*! bignumber.js v4.1.0 https://github.com/MikeMcl/bignumber.js/LICENCE */
++},{}],141:[function(require,module,exports){
++/*! bignumber.js v4.0.2 https://github.com/MikeMcl/bignumber.js/LICENCE */
+ 
+ ;(function (globalObj) {
+     'use strict';
+ 
+     /*
+-      bignumber.js v4.1.0
++      bignumber.js v4.0.2
+       A JavaScript library for arbitrary-precision arithmetic.
+       https://github.com/MikeMcl/bignumber.js
+       Copyright (c) 2017 Michael Mclaughlin <M8ch88l@gmail.com>
