@@ -74,6 +74,8 @@ if (IS_CX) {
   window.cxHelpers['similarity'] = similarity;
   window.cxHelpers['levenshtein'] = levenshtein;
 } else {
+    var MewConnectEth = require('./staticJS/mewConnectEth');
+    var MewConnect = require('@myetherwallet/mewconnect-web-client').Initiator;
     var u2f                  = require('./staticJS/u2f-api');
     var ledger3              = require('./staticJS/ledger3');
     var ledgerEth            = require('./staticJS/ledger-eth');
@@ -90,6 +92,8 @@ if (IS_CX) {
     window.DigitalBitboxEth  = digitalBitboxEth;
     window.SecalotUsb        = secalotUsb;
     window.SecalotEth        = secalotEth;
+    window.MewConnectEth = MewConnectEth;
+    window.MewConnect = MewConnect;
 }
 var CustomGasMessages        = require('./customGas.js')
 window.CustomGasMessages     = CustomGasMessages;
@@ -129,7 +133,8 @@ if (IS_CX) {
 }
 var app = angular.module('mewApp', ['pascalprecht.translate', 'ngSanitize','ngAnimate']);
 app.config(['$compileProvider', function($compileProvider) {
-  $compileProvider.aHrefSanitizationWhitelist(/^\s*(|blob|https|mailto):/);
+  $compileProvider.aHrefSanitizationWhitelist(/^\s*(|blob|https?|mailto|chrome-extension):/);
+  $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|local|data|file|chrome-extension):/);
 }]);
 app.config(['$translateProvider', function($translateProvider) {
   $translateProvider.useMissingTranslationHandlerLog();

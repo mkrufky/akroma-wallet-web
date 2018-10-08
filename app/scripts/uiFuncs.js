@@ -33,6 +33,13 @@ uiFuncs.signTxTrezor = function(rawTx, txData, callback) {
             return;
         }
 
+        // check the returned signature_v and recalc signature_v if it needed
+        // see also https://github.com/trezor/trezor-mcu/pull/399
+        if (result.v <= 1) {
+          // for larger chainId, only signature_v returned. simply recalc signature_v
+          result.v += 2 * rawTx.chainId + 35;
+        }
+
         rawTx.v = "0x" + ethFuncs.decimalToHex(result.v);
         rawTx.r = "0x" + result.r;
         rawTx.s = "0x" + result.s;
@@ -140,6 +147,26 @@ uiFuncs.signTxSecalot = function(eTx, rawTx, txData, callback) {
     var app = new SecalotEth(txData.hwTransport);
     app.signTransaction(txData.path, eTx, localCallback);
 }
+//= ================ Mew Connect (begin)==============================
+uiFuncs.signTxMewConnect = function (eTx, rawTx, txData, callback) {
+  // uiFuncs.notifier.info("Tap a touch button on your device to confirm signing.");
+
+  var app = new MewConnectEth()
+  var mewConnect = MewConnect.instance
+
+  app.setMewConnect(mewConnect)
+  mewConnect.once('signTx', function(data) {
+    uiFuncs.notifier.info("The transaction was signed but not sent. Click the blue 'Send Transaction' button to continue.")
+    // var eTx_ = new ethUtil.Tx(rawTx)
+    rawTx.rawTx = JSON.stringify(rawTx)
+    rawTx.signedTx = '0x' + data
+    rawTx.isError = false
+    if (callback !== undefined) callback(rawTx)
+  })
+
+  app.signTransaction(eTx, rawTx, txData)
+  //= ================ Mew Connect (end)==============================
+}
 uiFuncs.trezorUnlockCallback = function(txData, callback) {
     TrezorConnect.open(function(error) {
         if (error) {
@@ -217,6 +244,8 @@ uiFuncs.generateTx = function(txData, callback) {
                 uiFuncs.signTxDigitalBitbox(eTx, rawTx, txData, callback);
             } else if ((typeof txData.hwType != "undefined") && (txData.hwType == "secalot")) {
                 uiFuncs.signTxSecalot(eTx, rawTx, txData, callback);
+            } else if (typeof txData.hwType != "undefined" && txData.hwType == "mewConnect") {
+              uiFuncs.signTxMewConnect(eTx, rawTx, txData, callback);
             } else {
                 eTx.sign(new Buffer(txData.privKey, 'hex'));
                 rawTx.rawTx = JSON.stringify(rawTx);
