@@ -1123,10 +1123,10 @@
       </h5>
       <ul class="account-info">
         <li>
-          <a href="https://akroma.io/explorer/address/{{wallet.getAddressString()}}"
+          <a href="https://explorer.akroma.io/address/{{wallet.getAddressString()}}"
              target="_blank"
              rel="noopener noreferrer">
-               https://akroma.io/explorer/address/{{wallet.getAddressString()}}
+               https://explorer.akroma.io/address/{{wallet.getAddressString()}}
           </a>
         </li>
       </ul>
@@ -3702,7 +3702,8 @@
     </article>
 
     <!-- / Swap Kyber 4-->
-</article> 
+</article>
+ 
     </div>
 
     <section class="bity-contact text-center" ng-if="!isKyberRateSwap">
@@ -7313,7 +7314,7 @@
 
     <div class="cont-md" ng-show="txInfo.status == txStatus.mined">
       <h3 class="text-success" translate="tx_FoundOnChain"> Transaction Found </h3>
-      <h5> <a href="https://akroma.io/explorer/transaction/{{ tx.hash }}" target="_blank" rel="noopener noreferrer"> {{ tx.hash }} </a> </h5>
+      <h5> <a href="https://explorer.akroma.io/transaction/{{ tx.hash }}" target="_blank" rel="noopener noreferrer"> {{ tx.hash }} </a> </h5>
       <p><strong translate="tx_FoundOnChain_1"></strong></p>
       <ul>
         <li translate="tx_FoundOnChain_2"></li>
@@ -7358,7 +7359,7 @@
               TX Hash
             </td>
             <td>
-              <a href="https://akroma.io/explorer/transaction/{{ txInfo.hash }}" target="_blank" rel="noopener noreferrer">
+              <a href="https://explorer.akroma.io/transaction/{{ txInfo.hash }}" target="_blank" rel="noopener noreferrer">
                 {{ txInfo.hash }}
               </a>
             </td>
@@ -7368,7 +7369,7 @@
               From Address
             </td>
             <td>
-              <a href="https://akroma.io/explorer/address/{{ txInfo.from }}" target="_blank" rel="noopener noreferrer">
+              <a href="https://explorer.akroma.io/address/{{ txInfo.from }}" target="_blank" rel="noopener noreferrer">
                 {{ txInfo.from }}
               </a>
             </td>
@@ -7378,7 +7379,7 @@
               To Address
             </td>
             <td>
-              <a href="https://akroma.io/explorer/address/{{ txInfo.to }}" target="_blank" rel="noopener noreferrer">
+              <a href="https://explorer.akroma.io/address/{{ txInfo.to }}" target="_blank" rel="noopener noreferrer">
                 {{ txInfo.to }}
               </a>
             </td>
