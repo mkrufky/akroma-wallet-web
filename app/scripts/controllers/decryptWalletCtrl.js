@@ -38,6 +38,9 @@ var decryptWalletCtrl = function($scope, $sce, walletService) {
         hwESNetworkPath:   "m/44'/31102'/0'/0",    // first address: m/44'/31102'/0'/0/0
         hwEther1Path:      "m/44'/1313114'/0'/0",  // first address: m/44'/1313114'/0'/0/0
         hwAtheiosPath:     "m/44'/1620'/0'/0",     // first address: m/44'/1620'/0'/0/0
+        hwIolitePath:      "m/44'/1171337'/0'/0",  // first address: m/44'/1171337'/0'/0/0
+        tomoPath:          "m/44'/889'/0'/0",      // first address: m/44'/889'/0'/0/0
+        hwMixPath:         "m/44'/76'/0'/0",       // first address: m/44'/76'/0'/0/0
     };
     $scope.canUseMewConnect = MewConnectEth.checkWebRTCAvailable();
     $scope.mewConnectMayFail = MewConnectEth.checkBrowser();
@@ -97,6 +100,15 @@ var decryptWalletCtrl = function($scope, $sce, walletService) {
                     break;
                 case nodes.nodeTypes.GO:
                     $scope.HDWallet.dPath = $scope.HDWallet.goPath;
+                    break;
+                case nodes.nodeTypes.ILT:
+                    $scope.HDWallet.dPath = $scope.HDWallet.hwIolitePath;
+                break;
+                case nodes.nodeTypes.TOMO:
+                    $scope.HDWallet.dPath = $scope.HDWallet.tomoPath;
+                    break;
+                case nodes.nodeTypes.MIX:
+                    $scope.HDWallet.dPath = $scope.HDWallet.hwMixPath;
                     break;
                 default:
                     $scope.HDWallet.dPath = $scope.HDWallet.ledgerPath;
@@ -163,6 +175,12 @@ var decryptWalletCtrl = function($scope, $sce, walletService) {
                 case nodes.nodeTypes.ATH:
                     $scope.HDWallet.dPath = $scope.HDWallet.hwAtheiosPath;
                     break;
+                case nodes.nodeTypes.ILT:
+                    $scope.HDWallet.dPath = $scope.HDWallet.hwIolitePath;
+                    break;
+                case nodes.nodeTypes.TOMO:
+                    $scope.HDWallet.dPath = $scope.HDWallet.tomoPath;
+                    break;
                 default:
                     $scope.HDWallet.dPath = $scope.HDWallet.trezorPath;
             }
@@ -221,6 +239,15 @@ var decryptWalletCtrl = function($scope, $sce, walletService) {
                     break;
                 case nodes.nodeTypes.ATH:
                     $scope.HDWallet.dPath = $scope.HDWallet.hwAtheiosPath;
+                    break;
+                case nodes.nodeTypes.ILT:
+                    $scope.HDWallet.dPath = $scope.HDWallet.hwIolitePath;
+                    break;
+                case nodes.nodeTypes.TOMO:
+                    $scope.HDWallet.dPath = $scope.HDWallet.tomoPath;
+                    break;
+                case nodes.nodeTypes.MIX:
+                    $scope.HDWallet.dPath = $scope.HDWallet.hwMixPath;
                     break;
                 default:
                   $scope.HDWallet.dPath = $scope.HDWallet.defaultDPath;
@@ -414,15 +441,6 @@ var decryptWalletCtrl = function($scope, $sce, walletService) {
             $scope.$apply();
         }
     }
-    $scope.trezorCallback = function(response) {
-        if (response.success) {
-            $scope.HWWalletCreate(response.publicKey, response.chainCode, "trezor", $scope.getTrezorPath());
-        } else {
-            $scope.trezorError = true;
-            $scope.trezorErrorString = response.error;
-            $scope.$apply();
-        }
-    }
     $scope.digitalBitboxCallback = function(result, error) {
         $scope.HDWallet.digitalBitboxSecret = '';
         if (typeof result != "undefined") {
@@ -463,7 +481,33 @@ var decryptWalletCtrl = function($scope, $sce, walletService) {
         var path = $scope.getTrezorPath();
 
         console.warn("SCANTR", path, $scope.HDWallet)
-        TrezorConnect.getXPubKey(path, $scope.trezorCallback, '1.5.2');
+        TrezorConnect.getPublicKey({ path })
+            .then(
+                ({
+                    payload: {
+                        path,
+                        serializedPath,
+                        xpub,
+                        chainCode,
+                        childNum,
+                        publicKey,
+                        fingerprint,
+                        depth
+                    }
+                }) => {
+                    $scope.HWWalletCreate(
+                        publicKey,
+                        chainCode,
+                        "trezor",
+                        $scope.getTrezorPath()
+                    );
+                }
+            )
+            .catch(err => {
+                $scope.trezorError = true;
+                $scope.trezorErrorString = err;
+                $scope.$apply();
+            });
     };
   // ================= Mew Connect (start)==============================
   $scope.scanMewConnect = function () {
