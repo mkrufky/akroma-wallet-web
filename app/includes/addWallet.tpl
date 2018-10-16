@@ -351,10 +351,10 @@
       </h5>
       <ul class="account-info">
         <li>
-          <a href="https://akroma.io/explorer/address/{{wallet.getAddressString()}}"
+          <a href="https://explorer.akroma.io/address/{{wallet.getAddressString()}}"
              target="_blank"
              rel="noopener noreferrer">
-               https://akroma.io/explorer/address/{{wallet.getAddressString()}}
+               https://explorer.akroma.io/address/{{wallet.getAddressString()}}
           </a>
         </li>
       </ul>
