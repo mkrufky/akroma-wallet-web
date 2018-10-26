@@ -14,6 +14,13 @@ data:       '',
 msg:        'Thank you for buying ORCA Tokens! - Share ORCA with your friends (https://www.orcaalliance.eu).' 
 },
 {
+// TangguoTao Token sale
+to:         '0xfA0eF5E034CaE1AE752d59bdb8aDcDe37Ed7aB97',
+gasLimit:   200000,
+data:       '',
+msg:        'Thank you for buying TangguoTao Token! TCA is an additional value for goods transactions.' 
+},
+{
 // Opiria PDATA Token sale
 to:         '0xd166503B4fCC75630cc66Ad7AB7023336B3dD04a',
 gasLimit:   250000,
@@ -429,4 +436,10 @@ to:         '0x5f95c334f23eeab920ef753b995831a3c7138808',
 gasLimit:   210000,
 data:       '',
 msg:        'DCC Token Sale by The Distributed Credit Chain - https://dcc.finance/'
+},{
+// NEEO (NEEO) Token Sale
+to:         '0x0acbcc45dde258b18c11b16b06bdc64fd91913ac',
+gasLimit:   150000,
+data:       '',
+msg:        'NEEO token sale http://neeoico.com'
 }]

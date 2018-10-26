@@ -88,12 +88,12 @@
       <a class="brand" href="/" aria-label="Go to homepage">
         <img src="images/logo-akroma-web-wallet.svg"   height="64px" width="245px" alt="Akroma Web Wallet" />
         <!-- <h1>Akroma Web Wallet</h1> -->
-        <p class="small visible-xs">3.21.22</p>
+        <p class="small visible-xs">3.23.0</p>
       </a>
    
     <div class="tagline">
 
-    <span class="hidden-xs">3.21.22</span>
+    <span class="hidden-xs">3.23.1</span>
 
     <span class="dropdown dropdown-lang" ng-cloak>
       <a tabindex="0"  aria-haspopup="true" aria-expanded="false" aria-label="change language. current language {{curLang}}" class="dropdown-toggle" ng-click="dropdown = !dropdown">{{curLang}}<i class="caret"></i></a>
@@ -224,6 +224,25 @@
             Help
           </span>
         </a>
+      </li>
+      <li class="nav-item" ng-show="MEWconnectActive" ng-cloak>
+        <div style="margin-left: 20px;">
+          <div ng-show="MEWconnectState == 0" style="border-bottom: solid 2px #929292">
+            <h4 ><img src="images/MEWconnectLogo.svg" width="120" height="26"> Not Connected</h4>
+          </div>
+          <div ng-show="MEWconnectState == 1" style="border-bottom: solid 2px #1995be">
+            <h4><img src="images/MEWconnectLogo.svg" width="120" height="26" style="margin-right: 10px">Preparing Connection</h4>
+          </div>
+          <div ng-show="MEWconnectState == 2" style="border-bottom: solid 2px #23aeb2">
+            <h4 ><img src="images/MEWconnectLogo.svg" width="120" height="26"> Connected</h4>
+          </div>
+          <div ng-show="MEWconnectState == 3" style="border-bottom: solid 2px #febe1a">
+            <h4><img src="images/MEWconnectLogo.svg" width="120" height="26"> Timed Out</h4>
+          </div>
+          <div ng-show="MEWconnectState == 4" style="border-bottom: solid 2px #e74d41">
+            <h4><img src="images/MEWconnectLogo.svg" width="120" height="26"> Disconnected</h4>
+          </div>
+        </div>
       </li>
     </ul>
   </div>
