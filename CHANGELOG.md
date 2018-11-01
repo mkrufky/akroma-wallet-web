@@ -1,4 +1,21 @@
-### Rlease v3.23.1
+### Release v3.24.0
+
+### New
+
+- Add C20 contract abi [#2122](https://github.com/kvhnuke/etherwallet/pull/2122)
+- Adds VIC tokens [#2120](https://github.com/kvhnuke/etherwallet/pull/2120)
+- Adds VIC contracts [#2121](https://github.com/kvhnuke/etherwallet/pull/2121)
+- Adds phishfort extension [#2113](https://github.com/kvhnuke/etherwallet/pull/2113)
+- Update POA block explorrer [#2111](https://github.com/kvhnuke/etherwallet/pull/2111)
+- Fix trezor signing [#2109](https://github.com/kvhnuke/etherwallet/pull/2109)
+- Add Credits custom gas [#2107](https://github.com/kvhnuke/etherwallet/pull/2107)
+- Add TTA, ORME, 22x, Spice, and BCAP tokens [#2112](https://github.com/kvhnuke/etherwallet/pull/2112)
+
+### Devop
+
+- Update checksum error address [#2126](https://github.com/kvhnuke/etherwallet/pull/2126)
+
+### Release v3.23.1
 
 ### Hotfix
 

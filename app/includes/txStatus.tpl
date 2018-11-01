@@ -149,7 +149,7 @@
           <tr>
             <td>
               <a class="account-help-icon"
-                 href="https://myetherwallet.github.io/knowledge-base/gas/what-is-gas-ethereum.html"
+                 href="https://kb.myetherwallet.com/gas/what-is-gas-ethereum.html"
                  target="_blank"
                  rel="noopener noreferrer">
                    <img src="images/icon-help.svg" class="help-icon" />
