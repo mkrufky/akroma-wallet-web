@@ -88,12 +88,12 @@
       <a class="brand" href="/" aria-label="Go to homepage">
         <img src="images/logo-akroma-web-wallet.svg"   height="64px" width="245px" alt="Akroma Web Wallet" />
         <!-- <h1>Akroma Web Wallet</h1> -->
-        <p class="small visible-xs">3.23.0</p>
+        <p class="small visible-xs">3.24.0-akroma-0</p>
       </a>
    
     <div class="tagline">
 
-    <span class="hidden-xs">3.23.1</span>
+    <span class="hidden-xs">3.24.0-akroma-0</span>
 
     <span class="dropdown dropdown-lang" ng-cloak>
       <a tabindex="0"  aria-haspopup="true" aria-expanded="false" aria-label="change language. current language {{curLang}}" class="dropdown-toggle" ng-click="dropdown = !dropdown">{{curLang}}<i class="caret"></i></a>
@@ -151,7 +151,7 @@
           <p class="small" style="white-space:normal;font-weight:300;margin: 2rem 0 0;" translate="GAS_PRICE_Desc"></p>
           <a class="small"
              translate="x_ReadMore"
-             href="https://myetherwallet.github.io/knowledge-base/gas/what-is-gas-ethereum.html"
+             href="https://kb.myetherwallet.com/gas/what-is-gas-ethereum.html"
              target="_blank"
              rel="noopener noreferrer"></a>
         </div>
