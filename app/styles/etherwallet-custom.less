@@ -724,6 +724,25 @@ label small {
 header {
   margin-bottom: 1em;
 }
+header.AKROMA {
+  .header-branding {
+    border-bottom: 0.25rem solid @brand-akroma;
+  }
+  & + .container + .pre-footer + .footer {
+    border-top: 0.25rem solid @brand-akroma;
+  }
+  & + .container .modal-content {
+    border: 0.25rem solid @brand-akroma;
+  }
+  & + .container .alert-info {
+    background-color: @brand-akroma;
+  }
+  .dropdown-gas:before {
+    width: 34px;
+    background-image: url("../images/coins/akroma.svg");
+  }
+}
+
 header.ETH {
   .header-branding {
     border-bottom: 0.25rem solid @brand-eth;
