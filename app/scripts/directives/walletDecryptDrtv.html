@@ -47,7 +47,7 @@
     <!-- TREZOR -->
     <label class="radio"
            aria-flowto="aria4"
-           ng-show="ajaxReq.type=='ETH'||ajaxReq.type=='ETC'||ajaxReq.type=='ROPSTEN ETH'||ajaxReq.type=='RINKEBY ETH'||ajaxReq.type=='KOVAN ETH'||ajaxReq.type=='EXP'||ajaxReq.type=='UBQ'||ajaxReq.type=='POA'||ajaxReq.type=='TOMO'||ajaxReq.type=='ELLA'||ajaxReq.type=='EGEM'||ajaxReq.type=='CLO'||ajaxReq.type=='ETSC'||ajaxReq.type=='MUSIC'||ajaxReq.type=='GO'||ajaxReq.type=='EOSC'||ajaxReq.type=='AKA'||ajaxReq.type=='ESN'||ajaxReq.type=='PIRL'||ajaxReq.type=='ETHO'||ajaxReq.type=='ATH'||ajaxReq.type=='ILT'">
+           ng-show="ajaxReq.type=='ETH'||ajaxReq.type=='ETC'||ajaxReq.type=='ROPSTEN ETH'||ajaxReq.type=='RINKEBY ETH'||ajaxReq.type=='KOVAN ETH'||ajaxReq.type=='EXP'||ajaxReq.type=='UBQ'||ajaxReq.type=='POA'||ajaxReq.type=='TOMO'||ajaxReq.type=='ELLA'||ajaxReq.type=='EGEM'||ajaxReq.type=='CLO'||ajaxReq.type=='ETSC'||ajaxReq.type=='MUSIC'||ajaxReq.type=='GO'||ajaxReq.type=='EOSC'||ajaxReq.type=='AKA'||ajaxReq.type=='ESN'||ajaxReq.type=='PIRL'||ajaxReq.type=='ETHO'||ajaxReq.type=='ATH'||ajaxReq.type=='MIX'||ajaxReq.type=='ILT'">
       <input aria-flowto="aria4"
              type="radio"
              aria-label="Trezor Hardware Wallet"
@@ -247,6 +247,9 @@
           </a>
         </li>
       </ul>
+      <div ng-show="!supported" class="unsupported">
+        U2F not supported in this browser. Please try using Google Chrome with a secure (SSL / HTTPS) connection!
+      </div>
       <div class="form-group">
         <a class="btn btn-primary"
            ng-click="scanLedger()"
@@ -441,6 +444,76 @@
       </div>
     </div>
     <!-- / Secalot-->
+
+    <!--  Mew Connect -->
+    <!-------------------------------  Mew Connect (Start) ------------------------------------------>
+    <!-- Based Off MetaMask Code (above)-->
+    <div id="selectedTypeMewConnect"
+         visible=false
+         ng-if="walletType=='mewConnect'">
+      <h4> <!-- todo re-add translation property -->
+           MEWconnect
+      </h4>
+      <div ng-if="!canUseMewConnect || mewConnectMayFail.noSupport">
+        MEWconnect does not support your browser. <br/> Please use a supported browser (<a href="http://chrome.google.com/">Chrome</a>, <a href="https://www.mozilla.org/en-US/firefox/new/">Firefox</a>, <a href="http://www.opera.com/">Opera</a>, Safari (version 11 and above))
+      </div>
+      <div ng-if="canUseMewConnect && !mewConnectMayFail.noSupport">
+        <ul>
+          <li class="u__protip">
+            <!-- Todo add path  -->
+            <a href="https://kb.myetherwallet.com/getting-started/mew-connect-user-guide.html"
+               target="_blank"
+               rel="noopener noreferrer">
+              How to use MEWconnect with MyEtherWallet
+            </a>
+          </li>
+          <li class="u__protip">
+            <!-- Todo add path  -->
+            <span> Don't have MEWconnect? <br/> <a href="https://itunes.apple.com/us/app/mewconnect/id1391097156"  target="_blank" rel="noopener noreferrer"> <img src="images/appstore.png" height="50" width="170"> </a>
+          </li>
+        </ul>
+        <div class="form-group"
+             ng-hide="isSSL">
+        <span class="text-danger"> <!-- todo re-add translation property -->
+            MEWconnect only works on a secure (SSL / HTTPS) connection.
+        </span>
+        </div>
+        <div class="form-group" ng-show="(!mewConnectionStatus || mewConnectionStatus == 3 || mewConnectionStatus == 4) && canUseMewConnect">
+          <!-- todo re-add translation  and id properties -->
+          <a class="btn btn-primary"
+             ng-click="scanMewConnect()"
+             ng-show="walletType=='mewConnect'"
+             tabindex="0" role="button">
+            Connect with MEWconnect
+          </a>
+        </div>
+        <div class="form-group" ng-show="(mewConnectionStatus == 2) && canUseMewConnect">
+          <!-- todo re-add translation  and id properties -->
+          <a class="btn btn-primary"
+             ng-click="mewConnectDisconnect()"
+             ng-show="walletType=='mewConnect'"
+             tabindex="0" role="button">
+            Disconnect from MEWconnect
+          </a>
+        </div>
+        <div class="form-group" >
+          <!-- todo re-add translation  and id properties -->
+          <h5 ng-show="mewConnectionStatus == 1">Scan this code with your <a href="https://mewconnect.myetherwallet.com">MEWconnect app</a></h5>
+        </div>
+        <div ng-if="mewConnectionStatus == 1">
+          <div qr-code="{{mewConnectCode}}" watch-var="mewConnectCode" style="width: 200px; height: 200px"></div>
+        </div>
+
+        <div ng-if="mewConnectMayFail.status && !mewConnectMayFail.noSupport">
+          <br/>
+          MEWconnect does not fully support your browser [{{mewConnectMayFail.browser}} {{mewConnectMayFail.version}}] and may not work.  <br/> Please use a fully supported browser (<a href="http://chrome.google.com/">Chrome </a>, <a href="https://www.mozilla.org/en-US/firefox/new/">Firefox</a>, <a href="http://www.opera.com/">Opera</a>)
+        </div>
+      </div>
+
+
+    </div>
+    <!-------------------------------  Mew Connect (End) ------------------------------------------>
+    <!-- / Mew Connect -->
 
     <!-- Keystore -->
     <div ng-if="walletType=='fileupload'">
